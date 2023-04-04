@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -35,9 +36,8 @@ class StudentDetailFragment : Fragment() {
         if (arguments != null){
             id = StudentDetailFragmentArgs.fromBundle(requireArguments()).id
             name = StudentDetailFragmentArgs.fromBundle(requireArguments()).name
-            bod = StudentDetailFragmentArgs.fromBundle(requireArguments()).bod
+            bod = StudentDetailFragmentArgs.fromBundle(requireArguments()).dob
             phone = StudentDetailFragmentArgs.fromBundle(requireArguments()).phone
-            url = StudentDetailFragmentArgs.fromBundle(requireArguments()).url
         }
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.fetch(id,name,bod,phone,url)
@@ -45,10 +45,10 @@ class StudentDetailFragment : Fragment() {
     }
     fun observeViewModel() {
         viewModel.studentsLD.observe(viewLifecycleOwner, Observer {
-            txtDetailId.setText(it.id)
-            txtDetailName.setText(it.name)
-            txtDetailBod.setText(it.bod)
-            txtDetailPhone.setText(it.phone)
+            view?.findViewById<TextView>(R.id.txtDetailId1)?.setText(it.id)
+            view?.findViewById<TextView>(R.id.txtDetailName1)?.setText(it.name)
+            view?.findViewById<TextView>(R.id.txtDetailBod1)?.setText(it.dob)
+            view?.findViewById<TextView>(R.id.txtDetailPhone1)?.setText(it.phone)
         })
     }
 }

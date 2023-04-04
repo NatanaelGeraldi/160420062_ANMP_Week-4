@@ -14,9 +14,14 @@ import com.google.gson.reflect.TypeToken
 import id.ac.ubaya.informatika.advweek4.model.Student
 
 class DetailViewModel: ViewModel() {
-    val studentsLD = MutableLiveData<ArrayList<Student>>()
-    fun fetch(id:String, name:String, bod:String, phone: String, url:String) {
-        val student1 = Student(id,name,bod,phone,url)
+    val studentsLD = MutableLiveData<Student>()
+    val studentLoadErrorLD = MutableLiveData<Boolean>()
+    val loadingLD = MutableLiveData<Boolean>()
+    val TAG = "volleyTag"
+    private var queue:RequestQueue?=null
+    fun fetch(id:String, name:String, dob:String, phone: String, url:String) {
+        val student1 = Student(id,name,dob,phone,url)
         studentsLD.value = student1
+
     }
 }
