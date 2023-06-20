@@ -1,6 +1,7 @@
 package id.ac.ubaya.informatika.advweek4.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.ac.ubaya.informatika.advweek4.R
 import id.ac.ubaya.informatika.advweek4.viewModel.ListViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 
 class StudentListFragment : Fragment() {
@@ -56,7 +61,7 @@ class StudentListFragment : Fragment() {
     fun observeViewModel(){
         viewModel.studentsLD.observe(viewLifecycleOwner, Observer {
             studentListAdapter.updateStudentList(it)
-        })
+            })
 
         viewModel.studentLoadErrorLD.observe(viewLifecycleOwner, Observer {
             val txtError = view?.findViewById<TextView>(R.id.txtError)

@@ -13,7 +13,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import id.ac.ubaya.informatika.advweek4.model.Student
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel(application: Application): AndroidViewModel(application){
+    private lateinit var viewModel: DetailViewModel
     val studentsLD = MutableLiveData<Student>()
     val studentLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
@@ -22,6 +23,9 @@ class DetailViewModel: ViewModel() {
     fun fetch(id:String, name:String, dob:String, phone: String, url:String) {
         val student1 = Student(id,name,dob,phone,url)
         studentsLD.value = student1
+    }
+
+    fun observeViewModel(){
 
     }
 }
